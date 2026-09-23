@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var originalFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          var currentFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return currentFetch;
+            },
+            set: function(fn) {
+              currentFetch = fn;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var proto = typeof Window !== 'undefined' && Window.prototype;
+            if (proto) {
+              var pFetch = proto.fetch || (window && window.fetch);
+              var cur = pFetch && typeof pFetch === 'function' ? pFetch.bind(window) : undefined;
+              Object.defineProperty(proto, 'fetch', {
+                get: function() {
+                  return cur;
+                },
+                set: function(fn) {
+                  cur = fn;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (err) {
+            // Silently ignore if already defined or restricted
+          }
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline Library Management System (.NET 8 &amp; SQLite)</title>
+    <meta name="description" content="Hệ thống Quản lý Thư viện Cục bộ .NET 8 &amp; SQLite với tra cứu ISBN Google Books, chụp ảnh Webcam và giao diện Windows Desktop trực quan." />
+    <meta property="og:title" content="Offline Library Management System (.NET 8 &amp; SQLite)" />
+    <meta property="og:description" content="Hệ thống Quản lý Thư viện Cục bộ .NET 8 &amp; SQLite với tra cứu ISBN Google Books, chụp ảnh Webcam và giao diện Windows Desktop trực quan." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

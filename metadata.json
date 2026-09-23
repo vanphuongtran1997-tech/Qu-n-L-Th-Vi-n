@@ -1,0 +1,10 @@
+{
+  "name": "Offline Library Management System",
+  "description": "Hệ thống Quản lý Thư viện Cục bộ .NET 8 & SQLite với tra cứu ISBN Google Books, chụp ảnh Webcam và giao diện Windows Desktop trực quan.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
